@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hostile Aliens</title>
+</head>
+<style>
+  body{
+      background-color: black;
+  }
+  h1{
+      color: greenyellow ;
+      text-decoration: underline;
+  }
+  .ships {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+   #mother{
+    text-align: center;
+    font-weight: bold;
+    color: whitesmoke; 
+  }
+  #defender {
+      text-align:center;
+      font-weight: bold;
+      color: whitesmoke;
+      gap: 20px;
+  }
+  #attacker {
+    text-align:center;
+      font-weight: bold;
+      color: whitesmoke;
+      gap: 20px;
+  }
+  .buttons {
+      display: flex;
+      justify-content: center;
+  }
+  button {
+    padding: 12px;
+    font-size: 30px;
+    border: 2px solid orange;
+    border-radius:20px;
+    background-color: yellowgreen;
+    color: whitesmoke;
+    margin: 3px;
+    cursor: pointer;
+  }
+</style>
+<body>
+    <body>
+        <h1>Hostile Aliens</h1>
+        <div id="mother" class="ships"></div>
+        <div id="defender" class="ships"></div>
+        <div id="attacker" class="ships"></div>
+      <div class="buttons">
+          <button id="fire">Fire</button>
+          <button id="new-game">New Game</button>
+      </div>
+  
+    
+    <script>
+       const numMotherShips = 1;
+      const numAttackShips = 8;
+      const numDefenseShips = 5;
+      const totalShips = numAttackShips + numDefenseShips + numMotherShips;
+      let ships = [];
+      const motherShip = document.querySelector("#mother");
+      const attackers = document.querySelector("#attacker");
+      const defenders = document.querySelector("#defender");
+     
+    
+     class Ship {
+      constructor(name, hp, dmgPoints) {
+      this.name = name;
+      this.hp = hp;
+      this.dmgPoints = dmgPoints;
+      }
+       isHit() {
+           this.hp - this.dmgPoints;
+       }
+       die() {
+           this.hp = 0;
+       }
+     }
+
+    
+   
+     const newGame = () => {
+        document.getElementById("fire").disabled = false;
+        ships = [];
+        for (let index = 0; index < totalShips; index++) {
+          let newShip;
+          if (index < numMotherShips) {
+            newShip = new Ship("MotherShip", 100, 9);
+          } else if (index <= numAttackShips) {
+            newShip = new Ship("AttackShip", 45, 12);
+          } else if (index <= totalShips) {
+            newShip = new Ship("DefenseShip", 80, 10);
+          }
+          ships.push(newShip);
+        }
+        updateHtml();
+      };
+
+      const updateHtml = () => {
+        mother.innerHTML = "";
+        attacker.innerHTML = "";
+        defender.innerHTML = "";
+
+        ships.forEach((ship, index) => {
+          if (ship.name === "MotherShip") {
+            mother.innerHTML += `<p class="motherShip" id=${index}>${ship.name}: <br>${ship.hp}</p>`;
+          } else if (ship.name === "AttackShip") {
+            attacker.innerHTML += `<p class="attackShip" id=${index}>${ship.name}: <br>${ship.hp}</p>`;
+          } else {
+            defender.innerHTML += `<p class="defenseShip" id=${index}>${ship.name}: <br>${ship.hp}</p>`;
+          }
+        });
+      };
+
+      const endGame = () => {
+        ships.forEach((ship) => ship.die());
+        document.getElementById("fire").disabled = true;
+      };
+
+      const takeDmg = () => {
+        const randomIndex = Math.floor(Math.random() * ships.length);
+        const randomShip = ships[randomIndex];
+        randomShip.isHit();
+
+        if (randomShip.hp <= 0 && randomShip.name === "MotherShip") {
+          endGame();
+        } else if (randomShip.hp <= 0) {
+          ships.splice(randomIndex, 1);
+        }
+      
+        updateHtml();
+      };
+
+      document.querySelector("#fire").addEventListener("click", takeDmg);
+      document.querySelector("#new-game").addEventListener("click", newGame);
+    </script>
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
