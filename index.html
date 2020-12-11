@@ -24,13 +24,13 @@
     font-weight: bold;
     color: whitesmoke; 
   }
-  #defender {
+  .defender {
       text-align:center;
       font-weight: bold;
       color: whitesmoke;
       gap: 20px;
   }
-  #attacker {
+  .attacker {
     text-align:center;
       font-weight: bold;
       color: whitesmoke;
@@ -69,9 +69,9 @@
       const numDefenseShips = 5;
       const totalShips = numAttackShips + numDefenseShips + numMotherShips;
       let ships = [];
-      const motherShip = document.querySelector("#mother");
-      const attackers = document.querySelector("#attacker");
-      const defenders = document.querySelector("#defender");
+      const motherShip = document.querySelector(".mother");
+      const attackers = document.querySelector(".attacker");
+      const defenders = document.querySelector(".defender");
      
     
      class Ship {
@@ -128,7 +128,7 @@
         document.getElementById("fire").disabled = true;
       };
 
-      const takeDmg = () => {
+      const Dmg = () => {
         const randomIndex = Math.floor(Math.random() * ships.length);
         const randomShip = ships[randomIndex];
         randomShip.isHit();
@@ -142,7 +142,7 @@
         updateHtml();
       };
 
-      document.querySelector("#fire").addEventListener("click", takeDmg);
+      document.querySelector("#fire").addEventListener("click", Dmg);
       document.querySelector("#new-game").addEventListener("click", newGame);
     </script>
 
